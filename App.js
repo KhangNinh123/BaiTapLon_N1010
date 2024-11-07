@@ -1,99 +1,73 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-// Màn hình chi tiết sản phẩm
-const ProductDetails = () => {
-  return (
-    <View style={styles.productDetails}>
-      <Image
-        source={{ uri: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_3.png' }} // Đường dẫn đến hình ảnh với kích thước 300x360
-        style={styles.productImage}
-      />
-      <Text style={styles.productName}>Điện Thoại Iphone 16 pro Max</Text>
-      <Text style={styles.productPrice}>Giá: 41,790,000₫</Text>
-      <Text>Hàng chính hãng</Text>
-    </View>
-  );
-};
+const DATA = [
+  {
+    id: '1',
+    image: '', 
+    name: 'Ca nấu lẩu, nấu mì mini',
+    shop: 'Shop Devang',
+  },
+  {
+    id: '2',
+    image: '', 
+    name: '1KG KHÔ GÀ BƠ TỎI',
+    shop: 'Shop LTD Food',
+  },
+  {
+    id: '3',
+    image: '', 
+    name: 'Xe cần cẩu đa năng',
+    shop: 'Thế giới đồ chơi',
+  },
+  {
+    id: '4',
+    image: '', 
+    name: 'Đồ chơi dạng mô hình',
+    shop: 'Thế giới đồ chơi',
+  },
+  {
+    id: '5',
+    image: '', 
+    name: 'Lãnh đạo giản đơn',
+    shop: 'Minh Long Book',
+  },
+  {
+    id: '6',
+    image: '', 
+    name: 'Hiểu lòng con trẻ',
+    shop: 'Minh Long Book',
+  },
+  {
+    id: '7',
+    image: '', 
+    name: 'Donald Trump: Thiên tài lãnh đạo',
+    shop: 'Minh Long Book',
+  },
+];
 
-// Component chọn màu
-const ColorPicker = ({ colors, selectedColor, onSelectColor }) => {
-  return (
-    <View style={styles.colorPicker}>
-      <Text style={styles.colorPickerText}>Chọn một màu bên dưới:</Text>
-      <View style={styles.colorOptions}>
-        {colors.map((color, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[
-              styles.colorOption,
-              {
-                backgroundColor: color,
-                borderWidth: selectedColor === color ? 2 : 0,
-                borderColor: selectedColor === color ? '#000' : 'transparent',
-              },
-            ]}
-            onPress={() => onSelectColor(color)}
-          />
-        ))}
+
+const App = () => {
+  const renderItem = ({ item }) => (
+    <View style={styles.itemContainer}>
+      <Image source={{ uri: item.image }} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.productName}>{item.name}</Text>
+        <Text style={styles.shopName}>{item.shop}</Text>
       </View>
-    </View>
-  );
-};
-
-// Component giỏ hàng
-const Cart = ({ selectedColor }) => {
-  return (
-    <View style={styles.cart}>
-      <Text style={styles.cartTitle}>Giỏ Hàng</Text>
-      <Text>Bạn đã chọn màu: <Text style={{ color: selectedColor }}>{selectedColor}</Text></Text>
-      <TouchableOpacity style={styles.purchaseButton}>
-        <Text style={styles.buttonText}>Thanh Toán</Text>
+      <TouchableOpacity style={styles.chatButton}>
+        <Text style={styles.chatText}>Chat</Text>
       </TouchableOpacity>
     </View>
   );
-};
-
-const App = () => {
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [inCart, setInCart] = useState(false);
-
-  const colors = ['#00AEEF', '#FF0000', '#0000FF']; // Màu sắc sản phẩm
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
-  };
-
-  const handleAddToCart = () => {
-    setInCart(true);
-  };
 
   return (
     <View style={styles.container}>
-      {!inCart ? (
-        <>
-          <ProductDetails />
-          <ColorPicker
-            colors={colors}
-            selectedColor={selectedColor}
-            onSelectColor={handleColorSelect}
-          />
-          <TouchableOpacity
-            style={[
-              styles.addToCartButton,
-              { backgroundColor: selectedColor ? '#FF0000' : '#DDD' },
-            ]}
-            onPress={handleAddToCart}
-            disabled={!selectedColor}
-          >
-            <Text style={styles.buttonText}>
-              {selectedColor ? 'Chọn Mua' : 'Chọn Màu Sắc'}
-            </Text>
-          </TouchableOpacity>
-        </>
-      ) : (
-        <Cart selectedColor={selectedColor} />
-      )}
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };
@@ -101,72 +75,45 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+  },
+  itemContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
+    marginVertical: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
     backgroundColor: '#fff',
   },
-  productDetails: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 20,
-    marginBottom: 20,
-    alignItems: 'center',
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 5,
   },
-  productImage: {
-    width: 300, // Chiều rộng của hình ảnh
-    height: 400, // Chiều cao của hình ảnh
-    marginBottom: 10,
+  textContainer: {
+    flex: 1,
+    marginLeft: 10,
   },
   productName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
-  productPrice: {
-    fontSize: 16,
-    color: 'green',
+  shopName: {
+    fontSize: 14,
+    color: '#666',
   },
-  colorPicker: {
-    marginBottom: 20,
-  },
-  colorPickerText: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  colorOptions: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  colorOption: {
-    width: 50, // Kích thước của ô chọn màu (hình vuông)
-    height: 50, // Kích thước của ô chọn màu (hình vuông)
-    margin: 5,
-    borderRadius: 0, // Không có bo tròn góc để tạo thành hình vuông
-  },
-  addToCartButton: {
-    padding: 15,
+  chatButton: {
+    backgroundColor: '#ff0000',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 5,
   },
-  buttonText: {
+  chatText: {
     color: '#fff',
-    fontSize: 16,
-  },
-  cart: {
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 20,
-  },
-  cartTitle: {
-    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  purchaseButton: {
-    backgroundColor: '#FF0000',
-    padding: 15,
-    borderRadius: 5,
-    marginTop: 20,
   },
 });
 
