@@ -6,7 +6,7 @@ import Colors from '../Utils/Colors'
 import { useOAuth } from "@clerk/clerk-expo";
 
 import google from './../../assets/images/google.png'
-// import { useWarmUpBrowser } from '../../hooks/warmUpBrowser';
+import { useWarmUpBrowser } from '../../hooks/warmUpBrowser';
 WebBrowser.maybeCompleteAuthSession();
 export default function LoginScreen() {
     useWarmUpBrowser();
