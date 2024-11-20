@@ -1,62 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useFonts } from 'expo-font';
-import { ClerkProvider,SignedIn, SignedOut, useAuth } from "@clerk/clerk-expo";
-
-
-
-import * as SecureStore from "expo-secure-store";
-
-import { useState } from 'react';
-
-const tokenCache = {
-  async getToken(key) {
-    try {
-      return SecureStore.getItemAsync(key);
-    } catch (err) {
-      return null;
-    }
-  },
-  async saveToken(key, value) {
-    try {
-      return SecureStore.setItemAsync(key, value);
-    } catch (err) {
-      return;
-    }
-  },
-};
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import HomePage from './components/HomePage';
+import TabNavigator from './navigators/TabNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import MyCourseNavigator from './navigators/MyCourseNavigator';
 export default function App() {
-  const [isChapterComplete,setIsChapterComplete]=useState(false);
-  const [userPoints,setUserPoints]=useState();
-  const [fontsLoaded] = useFonts({
-    'outfit': require('./assets/fonts/Outfit-Regular.ttf'),
-    'outfit-bold': require('./assets/fonts/Outfit-Bold.ttf'),
-    'outfit-medium': require('./assets/fonts/Outfit-SemiBold.ttf'),
-  });
-
+  let data = {
+    title: "Christian Hayes",
+    certificate: "University of Havard",
+    imageUrl: "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.jpg?s=612x612&w=0&k=20&c=YOpVZmLiY4ccl_aoWRJhfqLpNEDgjyOGuTAKbobCO-U=",
+    rate: 4.5,
+    totalRate: 1233,
+  }
   return (
-    <ClerkProvider 
-    tokenCache={tokenCache}
-    publishableKey={"Your Clerk Key"}>
-      <UserPointsContext.Provider value={{userPoints,setUserPoints}}>
-   <CompleteChapterContext.Provider value={{isChapterComplete,setIsChapterComplete}}>
-    <View style={styles.container}>
-     
-      <SignedIn>
-          <NavigationContainer>
-            <TabNavigation/>
-          </NavigationContainer>
-          
-        </SignedIn>
-        <SignedOut>
-        <LoginScreen/>
-        </SignedOut>
-    </View>
-
-    </CompleteChapterContext.Provider>
-    </UserPointsContext.Provider>
-    </ClerkProvider>
-    
+    <NavigationContainer>
+      <View style={styles.container}>
+        <TabNavigator />
+      </View>
+    </NavigationContainer>
   );
 }
 
@@ -64,7 +25,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop:20
-   
   },
 });
