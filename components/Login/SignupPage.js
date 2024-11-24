@@ -3,20 +3,19 @@ import { SafeAreaView, View, Text, TextInput, StyleSheet, TouchableOpacity } fro
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function RegisterScreen({ navigation }) {
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showInputs, setShowInputs] = useState(false); // Trạng thái nút toggle
 
-  const isFormComplete = username && email && password && confirmPassword;
+  const isFormComplete = email && password && confirmPassword;
 
   const handleSignUp = () => {
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    alert(`Sign Up Successful!\nUsername: ${username}\nEmail: ${email}`);
+    alert('Sign Up Successful!');
     navigation.navigate('Login');
   };
 
@@ -27,12 +26,6 @@ export default function RegisterScreen({ navigation }) {
     >
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>SIGN UP</Text>
-        <TextInput
-          placeholder="Username"
-          style={styles.input}
-          value={username}
-          onChangeText={setUsername}
-        />
         <TextInput
           placeholder="Email"
           style={styles.input}
@@ -59,23 +52,23 @@ export default function RegisterScreen({ navigation }) {
             style={[styles.checkButton, showInputs && styles.checkButtonActive]}
             onPress={() => setShowInputs(!showInputs)}
           >
-          {showInputs && <Text style={styles.checkMark}>✔</Text>}
+            {showInputs && <Text style={styles.checkMark}>✔</Text>}
           </TouchableOpacity>
-            <Text style={styles.textCheck}>Teacher</Text>
+          <Text style={styles.textCheck}>Teacher</Text>
+        </View>
+        {showInputs && (
+          <View style={styles.inputsContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Expertise"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Certificate"
+            />
           </View>
-          {showInputs && (
-            <View style={styles.inputsContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder="Expertise"
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Certificate"
-              />
-            </View>
-          )}
-        
+        )}
+
         <TouchableOpacity
           style={[styles.btn, isFormComplete ? styles.btnActive : styles.btnInactive]}
           onPress={handleSignUp}
@@ -124,10 +117,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   inputsContainer: {
-    width:'100%',
-    marginLeft:65,
-    justifyContent:'center',
-    alignContent:'center',
+    width: '100%',
+    marginLeft: 65,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   btn: {
     borderWidth: 1,
@@ -156,7 +149,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     marginTop: 20,
     textAlign: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     color: 'white',
   },
   footer: {
@@ -167,15 +160,15 @@ const styles = StyleSheet.create({
     bottom: 15,
     alignSelf: 'center',
   },
-  checkContainer:{
-    flexDirection:'row',
+  checkContainer: {
+    flexDirection: 'row',
     alignSelf: 'flex-end',
     marginRight: 35,
   },
   checkButton: {
     borderWidth: 1,
-    height:15,
-    width:15,
+    height: 15,
+    width: 15,
     borderColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -188,8 +181,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  textCheck:{
-    marginLeft:10,
+  textCheck: {
+    marginLeft: 10,
     fontFamily: 'Roboto',
     textAlign: 'center',
     color: 'white',
