@@ -1,121 +1,96 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import Header from './HomePage/Header';
 import Banner from './HomePage/Banner';
 import Category from './HomePage/Category';
-import PopularCourse from './HomePage/PopularCourse';
-import VerticalCarousel from './HomePage/VertitcalCarousel';
-import { getAllCategory } from "../services/categoryService"
-import { Platform } from 'react-native';
-import axios from 'axios';
-const Tab = createBottomTabNavigator();
-const HomePage = () => {
-    let data = {
-        titleBanner: "Project Management",
-        discount: "20% OFF"
-    }
-    const [dataCategory, setDataCategory] = useState([]);
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const iosUrl = 'http://172.21.71.72:8080';
-                const androidUrl = 'http://10.0.2.2:8080';
-                const url = Platform.OS === 'ios' ? iosUrl : androidUrl;
-                console.log('Fetching categories from:', `${url}/api/category`);
-                const response = await axios.get(`${url}/api/category`);
-                setDataCategory(response.data);
-            } catch (error) {
-                console.error('Error fetching categories:', error);
-                setError('Failed to fetch categories. Please try again later.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCategories();
-    }, []);
-    console.log("data fetched:", dataCategory);
-
-    const [dataPopularCourse, setdataPopularCourse] = useState([]);
-    useEffect(() => {
-        const fetchDataPopularCourse = async () => {
-            try {
-                const iosUrl = 'http://172.21.71.72:8080';
-                const androidUrl = 'http://10.0.2.2:8080';
-                const url = Platform.OS === 'ios' ? iosUrl : androidUrl;
-                console.log('Fetching courses from:', `${url}/api/course`);
-                const response = await axios.get(`${url}/api/course`);
-                setdataPopularCourse(response.data);
-            } catch (error) {
-                console.error('Error fetching courses:', error);
-                setError('Failed to fetch courses. Please try again later.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchDataPopularCourse();
-    }, []);
-    let dataTopTeacher = [
-        {
-            title: "Christian Hayes",
-            totalRate: 1233,
-            certificate: "University of Havard",
-            rate: 4.5,
-            imageUrl: "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.jpg?s=612x612&w=0&k=20&c=YOpVZmLiY4ccl_aoWRJhfqLpNEDgjyOGuTAKbobCO-U="
-        },
-        {
-            title: "Christian Hayes",
-            totalRate: 1233,
-            certificate: "University of Havard",
-            rate: 4.5,
-            imageUrl: "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.jpg?s=612x612&w=0&k=20&c=YOpVZmLiY4ccl_aoWRJhfqLpNEDgjyOGuTAKbobCO-U="
-        },
-        {
-            title: "Christian Hayes",
-            totalRate: 1233,
-            certificate: "University of Havard",
-            rate: 4.5,
-            imageUrl: "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.jpg?s=612x612&w=0&k=20&c=YOpVZmLiY4ccl_aoWRJhfqLpNEDgjyOGuTAKbobCO-U="
-        },
-        {
-            title: "Christian Hayes",
-            totalRate: 1233,
-            certificate: "University of Havard",
-            rate: 4.5,
-            imageUrl: "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.jpg?s=612x612&w=0&k=20&c=YOpVZmLiY4ccl_aoWRJhfqLpNEDgjyOGuTAKbobCO-U="
+import HorizontalCourse from './HomePage/HorizontalCourse';
+import HorizontalTeacher from './HomePage/HorizontalTeacher';
+import VerticalCarousel from './HomePage/VertitcalCarousel'
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTeachers } from '../redux/slices/userSlice';
+import { fetchAllCategory } from '../redux/slices/categorySlice';
+import { fetchPopularCourse, fetchInspiresCourse } from '../redux/slices/courseSlice';
+const HomePage = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const { teachers, loadingTeacher, errorTeacher } = useSelector((state) => state.user);
+    const { popularCourse, loadingCourse, errorCourse } = useSelector((state) => state.course);
+    const { inspiresCourse } = useSelector((state) => state.course);
+    const handleGetInpiresCourse = async () => {
+        try {
+            await dispatch(fetchInspiresCourse({ categoryId: 2, limit: 3 }));
+        } catch (error) {
+            console.log('Error fetching popular course:', error);
         }
-    ]
+    };
+    const handleGetPopularCourse = async () => {
+        try {
+            await dispatch(fetchPopularCourse());
+        } catch (error) {
+            console.log('Error fetching popular course:', error);
+        }
+    };
+    const handleGetAllTeacher = async () => {
+        try {
+            await dispatch(fetchTeachers());
+        } catch (error) {
+            console.log('Error fetching teachers:', error);
+        }
+    };
+    const { categories, loadingCategory, errorCategory } = useSelector((state) => state.category);
+
+    useEffect(() => {
+        dispatch(fetchAllCategory(6));
+    }, [dispatch]);
+
+    useEffect(() => {
+        handleGetAllTeacher();
+        handleGetPopularCourse();
+        handleGetInpiresCourse();
+    }, []);
+
     return (
         <SafeAreaView>
             <ScrollView>
-                <Header />
-                <Banner data={data} />
-                <Category data={dataCategory} />
-                <View style={styles.popularCoursesContainer}>
+                <Header navigation={navigation} />
+                <Banner data={{ titleBanner: 'Project Management', discount: '20% OFF' }} />
+                {loadingCategory ? (<Text>Loading...</Text>) :
+                    errorCategory ? (<Text style={{ color: 'red' }}>Error: {errorCategory}</Text>)
+                        : (<Category data={categories} />)}
+                <View style={styles.sessionContainer}>
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>Popular Courses</Text>
                         <Text style={styles.viewMore}>View more</Text>
                     </View>
-                    <PopularCourse data={dataPopularCourse} />
+                    <HorizontalCourse navigation={navigation} data={popularCourse} />
                 </View>
-                <View style={styles.verticalCarouselContainer}>
+                <View style={styles.sessionContainer}>
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>Recommended for you</Text>
                         <Text style={styles.viewMore}>View more</Text>
                     </View>
-                    <VerticalCarousel data={dataPopularCourse} />
+                    <HorizontalCourse navigation={navigation} data={popularCourse} />
                 </View>
-                <View style={styles.topTeachersContainer}>
+                <View style={styles.sessionContainer}>
                     <View style={styles.headerContainer}>
                         <Text style={styles.header}>Course that inspires</Text>
                         <Text style={styles.viewMore}>View more</Text>
                     </View>
-                    <PopularCourse data={dataTopTeacher} />
+                    <VerticalCarousel navigation={navigation} data={inspiresCourse} />
+                </View>
+                <View style={styles.sessionContainer}>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.header}>Top teachers</Text>
+                        <Text style={styles.viewMore}>View more</Text>
+                    </View>
+                    {loadingTeacher ? (
+                        <Text>Loading...</Text>
+                    ) : errorTeacher ? (
+                        <Text style={{ color: 'red' }}>Error: {errorTeacher}</Text>
+                    ) : teachers?.length > 0 ? (
+                        <HorizontalTeacher navigation={navigation} data={teachers} />
+                    ) : (
+                        <Text>No teachers available</Text>
+                    )}
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -123,13 +98,7 @@ const HomePage = () => {
 };
 
 const styles = StyleSheet.create({
-    popularCoursesContainer: {
-        marginBottom: 20,
-    },
-    verticalCarouselContainer: {
-        marginBottom: 20,
-    },
-    topTeachersContainer: {
+    sessionContainer: {
         marginBottom: 20,
     },
     header: {
@@ -146,8 +115,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-    }
+    },
 });
-
 
 export default HomePage;
