@@ -2,12 +2,30 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   ScrollView,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import { AntDesign, Ionicons, Feather } from '@expo/vector-icons';
 
+<<<<<<< HEAD
+=======
+=======
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import { AntDesign, Ionicons, Feather } from '@expo/vector-icons';
+
+
+
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 const sectionsData = [
   {
     id: '1',
@@ -43,12 +61,24 @@ const App = () => {
 
   const toggleSection = (id) => {
     if (expandedSections.includes(id)) {
+<<<<<<< HEAD
       setExpandedSections(expandedSections.filter((sectionId) => sectionId !== id));
+=======
+<<<<<<< HEAD
+      setExpandedSections(expandedSections.filter((sectionId) => sectionId !== id));
+=======
+      setExpandedSections(expandedSections.filter(sectionId => sectionId !== id));
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     } else {
       setExpandedSections([...expandedSections, id]);
     }
   };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -89,6 +119,60 @@ const App = () => {
           </View>
         ))}
       </ScrollView>
+<<<<<<< HEAD
+=======
+=======
+  const renderLesson = ({ item }) => (
+    <View style={styles.lessonContainer}>
+      <View>
+        <Text>{item.id}</Text>
+      </View>
+      <View style={styles.lessonInfo}>
+        <Text style={styles.lessonTitle}>{item.title}</Text>
+        <Text style={styles.lessonDuration}>{item.duration}</Text>
+      </View>
+      <View style={styles.lessonIcon}>
+        {item.completed ? (
+          <Ionicons name="checkmark" size={24} color="blue" />
+        ) : item.playing ? (
+          <Feather name="play" size={20} color="blue" />
+        ) : (
+          <Feather name="play" size={20} color="black" />
+        )}
+      </View>
+    </View>
+  );
+
+  const renderSection = ({ item }) => (
+    <View>
+      <TouchableOpacity onPress={() => toggleSection(item.id)} style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>{item.title}</Text>
+        <AntDesign
+          name={expandedSections.includes(item.id) ? 'up' : 'down'}
+          size={18}
+          color="black"
+        />
+      </TouchableOpacity>
+      {expandedSections.includes(item.id) && (
+        <FlatList
+          data={item.lessons}
+          renderItem={renderLesson}
+          keyExtractor={(lesson) => lesson.id}
+          nestedScrollEnabled
+        />
+      )}
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={sectionsData}
+        renderItem={renderSection}
+        keyExtractor={(section) => section.id}
+      />
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     </View>
   );
 };

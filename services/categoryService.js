@@ -1,5 +1,9 @@
 import axios from '../utils/axios';
+<<<<<<< HEAD
 import { BASE_URL } from '@env';
+=======
+import { BASE_URL } from '@env'
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 // Lấy danh sách danh mục
 export const getAllCategory = async (limit) => {
     try {

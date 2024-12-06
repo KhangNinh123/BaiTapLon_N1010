@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+<<<<<<< HEAD
 import { getPopularCourse, getInspiresCourse, getCourseByName } from '../../services/courseService';
+=======
+import { getPopularCourse, getInspiresCourse } from '../../services/courseService';
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 
 const initialState = {
     popularCourse: [],
     allCourse: [],
+<<<<<<< HEAD
     searchCourses: [],
+=======
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     inspiresCourse: [],
     loadingCourse: false,
     errorCourse: null
@@ -27,6 +34,7 @@ export const fetchInspiresCourse = createAsyncThunk('course/getInspiresCourse', 
         return rejectWithValue(error.response?.message || 'Error fetching inprires course');
     }
 });
+<<<<<<< HEAD
 export const searchCourseByName = createAsyncThunk('course/searchCourse', async ({ nameCourse }, { rejectWithValue }) => {
     try {
         const response = await getCourseByName(nameCourse);
@@ -35,6 +43,8 @@ export const searchCourseByName = createAsyncThunk('course/searchCourse', async 
         return rejectWithValue(error.response?.message || 'Error search course by name');
     }
 });
+=======
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 
 // Slice
 const courseSlice = createSlice({
@@ -69,6 +79,10 @@ const courseSlice = createSlice({
                 state.loading = false;
                 state.errorCourse = action.payload;
             })
+<<<<<<< HEAD
+=======
+
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
             ;
     },
 });

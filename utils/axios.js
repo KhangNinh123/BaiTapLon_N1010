@@ -2,8 +2,13 @@ import axios from 'axios';
 import { Alert } from 'react-native'; // Sử dụng để thông báo lỗi nếu cần
 // import { REACT_APP_BACKEND_URL } from '@env';
 const instance = axios.create({
+<<<<<<< HEAD
     baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080', // Dùng giá trị mặc định nếu không có biến môi trường
     timeout: 3000, // Đặt timeout 10 giây
+=======
+    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://192.168.2.9:8080', // Dùng giá trị mặc định nếu không có biến môi trường
+    timeout: 10000, // Đặt timeout 10 giây
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 });
 
 // Xử lý phản hồi thành công

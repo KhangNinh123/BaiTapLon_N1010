@@ -8,9 +8,12 @@ module.exports = function (api) {
         {
           moduleName: '@env',
           path: '.env',
+<<<<<<< HEAD
           blocklist: null,
           allowlist: null,
           safe: false,
+=======
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
           allowUndefined: true,
         },
       ],

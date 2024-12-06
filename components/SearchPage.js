@@ -5,10 +5,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AntDesign from '@expo/vector-icons/AntDesign';
 import HorizontalCourse from './HomePage/HorizontalCourse';
 import { SafeAreaView } from 'react-native-safe-area-context';
+<<<<<<< HEAD
 import Course from './Course/Course';
 import { fetchTopics, fetchCourseFilter } from '../redux/slices/topicSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
+=======
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 const SearchPage = () => {
     const [search, setSearch] = useState('');
     const [activeFilterSession, setActiveFilterSession] = useState(false);
@@ -100,6 +103,7 @@ const SearchPage = () => {
                 <View style={styles.searchBar}>
                     <SearchBar
                         inputStyle={{ backgroundColor: '#F3F4F6' }}
+<<<<<<< HEAD
                         containerStyle={{
                             backgroundColor: 'white',
                             borderRadius: 5,
@@ -124,10 +128,23 @@ const SearchPage = () => {
                             { backgroundColor: search.trim() ? '#00BDD6' : '#B0B0B0' },
                         ]}
                     >
+=======
+                        containerStyle={{ backgroundColor: 'white', borderRadius: 5, flex: 1, borderBottomWidth: 0, borderTopWidth: 0 }}
+                        inputContainerStyle={{
+                            backgroundColor: '#F3F4F6',
+                        }}
+                        lightTheme
+                        placeholder='Search Course'
+                        onChangeText={text => setSearch(text)}
+                        value={search}
+                    />
+                    <Pressable style={styles.filterButton}>
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
                         <MaterialCommunityIcons name="filter-variant" size={24} color="white" />
                         <Text style={{ color: 'white', fontWeight: 'bold' }}>Filter</Text>
                     </Pressable>
                 </View>
+<<<<<<< HEAD
                 {activeFilterSession ? (
                     courses ? (
                         <ListFilter data={courses} />
@@ -152,6 +169,30 @@ const SearchPage = () => {
                                 <Text style={styles.viewMore}>View more</Text>
                             </View>
                             {category.map((item, index) => (
+=======
+                <View>
+                    <Text style={{ fontWeight: '600', fontSize: 20, paddingVertical: 10 }}>Hot topics</Text>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                        {
+                            topics.map((topic, index) => {
+                                return (
+                                    <Pressable style={styles.topic} key={index}>
+                                        <Text style={{ color: '#00BDD6' }}>{topic}</Text>
+                                    </Pressable>
+                                );
+                            })
+                        }
+                    </View>
+                </View>
+                <View>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.header}>Categories</Text>
+                        <Text style={styles.viewMore}>View more</Text>
+                    </View>
+                    {
+                        category.map((item, index) => {
+                            return (
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
                                 <Pressable style={styles.categoryBox} key={index}>
                                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                                         <AntDesign name={item.iconName} size={24} color="#00BDD6" />
@@ -159,6 +200,7 @@ const SearchPage = () => {
                                     </View>
                                     <AntDesign name="right" size={24} color="black" />
                                 </Pressable>
+<<<<<<< HEAD
                             ))}
                         </View>
                         <View style={styles.popularCoursesContainer}>
@@ -170,6 +212,19 @@ const SearchPage = () => {
                         </View>
                     </View>
                 )}
+=======
+                            );
+                        })
+                    }
+                </View>
+                <View style={styles.popularCoursesContainer}>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.header}>Recommended for you</Text>
+                        <Text style={styles.viewMore}>View more</Text>
+                    </View>
+                    <HorizontalCourse data={courseRecommend} />
+                </View>
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
             </ScrollView>
         </SafeAreaView>
     );

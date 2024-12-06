@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
+=======
+<<<<<<< HEAD
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
+=======
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
+
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 const reviews = [
   {
     id: '1',
@@ -60,10 +73,19 @@ export default function ReviewScreen() {
     setSelectedFilter(filter);
   };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   const filteredReviews = reviews.filter(
     (review) => selectedFilter === 'All' || review.rating === selectedFilter
   );
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   return (
     <View style={styles.container}>
       <View style={styles.averageRatingContainer}>
@@ -87,12 +109,27 @@ export default function ReviewScreen() {
           />
         ))}
       </View>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 
       <ScrollView nestedScrollEnabled>
         {filteredReviews.map((review) => (
           <ReviewItem key={review.id} review={review} />
         ))}
       </ScrollView>
+<<<<<<< HEAD
+=======
+=======
+      <FlatList
+        data={reviews.filter((review) => selectedFilter === 'All' || review.rating === selectedFilter)}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <ReviewItem review={item} />}
+        nestedScrollEnabled
+      />
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     </View>
   );
 }
@@ -107,12 +144,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+<<<<<<< HEAD
     justifyContent: 'space-between',
+=======
+<<<<<<< HEAD
+    justifyContent: 'space-between',
+=======
+    justifyContent: 'space-between'
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   },
   averageRatingTextContainer: {
     marginLeft: 8,
     flexDirection: 'row',
+<<<<<<< HEAD
     alignItems: 'center',
+=======
+<<<<<<< HEAD
+    alignItems: 'center',
+=======
+    alignItems: 'center'
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   },
   averageRating: {
     fontSize: 20,

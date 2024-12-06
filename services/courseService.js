@@ -1,6 +1,11 @@
 import axios from '../utils/axios';
+<<<<<<< HEAD
 import { BASE_URL } from '@env';
 const URL = `${BASE_URL}courses`;
+=======
+import { BASE_URL } from '@env'
+const URL = BASE_URL + 'courses';
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 
 
 export const getPopularCourse = async () => {
@@ -21,6 +26,7 @@ export const getInspiresCourse = async (categoryId, limit) => {
         throw new Error(error.response?.message || 'Something went wrong');
     }
 };
+<<<<<<< HEAD
 export const getCourseByName = async (nameCourse) => {
     try {
         const response = await axios.get(`${URL}/filterCourse`, { params: { nameCourse } });
@@ -30,3 +36,5 @@ export const getCourseByName = async (nameCourse) => {
         throw new Error(error.response?.message || 'Something went wrong');
     }
 };
+=======
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9

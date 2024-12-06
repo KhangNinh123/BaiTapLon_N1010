@@ -1,6 +1,11 @@
 import axios from '../utils/axios';
+<<<<<<< HEAD
 import { BASE_URL } from '@env';
 const URL = `${BASE_URL}users`;
+=======
+import { BASE_URL } from '@env'
+const URL = BASE_URL + 'users';
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 // Lấy danh sách giáo viên
 export const getAllTeacher = async () => {
     try {
@@ -30,6 +35,10 @@ export const checkLogin = async ({ email, password }) => {
     try {
         console.log(URL);
 
+<<<<<<< HEAD
+=======
+        // console.log('Email:', email, 'Password:', password);
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
         const response = await axios.post(`${URL}/login`, { email, password });
         // console.log('Login response:', response);
         return response;

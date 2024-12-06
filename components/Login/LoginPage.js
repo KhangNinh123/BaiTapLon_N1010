@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -13,10 +17,22 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { performLogin } from '../../redux/slices/userSlice'; // Đường dẫn đúng tới userSlice
+<<<<<<< HEAD
+=======
+=======
+import React, {useState} from 'react';
+import { SafeAreaView ,View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   const dispatch = useDispatch();
 
   const { loading, error, loggedInUser } = useSelector((state) => state.user);
@@ -95,24 +111,78 @@ export default function LoginScreen({ navigation }) {
         </SafeAreaView>
       </LinearGradient>
     </TouchableWithoutFeedback>
+<<<<<<< HEAD
+=======
+=======
+  return (
+    <LinearGradient
+      colors={['#4423a3', '#aa63cb']}
+      style={styles.background}
+    > 
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>LOGIN</Text>
+        <TextInput placeholder="Username" style={styles.input} value={username} onChangeText={setUsername}/>
+        <TextInput placeholder="Password" style={styles.input} secureTextEntry value={password} onChangeText={setPassword}/>
+        <TouchableOpacity style={[styles.btn , username && password && styles.btnActive]} disabled={!password}>
+          <Text style={[styles.textBtn, username && password && styles.textActive]}>Log In</Text>
+        </TouchableOpacity>
+        <Text style={styles.link} onPress={() => navigation.navigate('ForgotPassword')}>
+          Forgot your login details? Get help singin in.
+        </Text>
+        <View style={styles.footer}>
+          <Text style={styles.link} onPress={() => navigation.navigate('Register')}>
+            Don't have an account? Sign up.
+          </Text>
+        </View>
+      </SafeAreaView>
+    </LinearGradient>
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   );
 }
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
   background: {
     flex: 1,
+=======
+<<<<<<< HEAD
+  background: {
+    flex: 1,
+=======
+  background:{
+    flex:1,
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   },
   container: {
     flex: 1,
     justifyContent: 'center',
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     alignItems: 'center',
   },
   title: {
     fontFamily: 'Roboto',
+<<<<<<< HEAD
+=======
+=======
+    alignItems:'center',
+  },
+  title: {
+    fontFamily:'Roboto',
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     color: '#ffffff',
   },
   input: {
@@ -120,10 +190,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 50,
     width: '80%',
+<<<<<<< HEAD
+=======
+=======
+    color:'#ffffff',
+  },
+  input: {
+    fontFamily:'Roboto',
+    borderWidth: 1,
+    height:50,
+    width:'80%',
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     borderColor: '#ccc',
     borderRadius: 5,
     marginBottom: 15,
     paddingHorizontal: 10,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     color: '#ffffff',
     fontSize: 14,
   },
@@ -149,10 +235,44 @@ const styles = StyleSheet.create({
   },
   link: {
     fontFamily: 'Roboto',
+<<<<<<< HEAD
+=======
+=======
+    color:"#ffffff",
+    fontSize:14,
+  },
+  btn:{
+    borderWidth:1,
+    height:50,
+    width:'80%',
+    borderRadius:5,
+    justifyContent:'center',
+    borderColor:'#D1D1D1',
+  },  
+  btnActive: {
+    borderColor:'white'
+  },
+  textBtn:{
+    fontFamily:'Roboto',
+    fontSize:14,
+    textAlign:'center',
+    color:'#D1D1D1',
+  },
+  textActive:{
+    color:'white',
+  },
+  link: {
+    fontFamily:'Roboto',
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
     marginTop: 20,
     textAlign: 'center',
     color: 'white',
   },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
   footer: {
     borderTopWidth: 1,
     borderColor: 'white',
@@ -165,4 +285,17 @@ const styles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
   },
+<<<<<<< HEAD
+=======
+=======
+  footer:{
+    borderTopWidth:1,
+    borderColor:'white',
+    width:'100%',
+    position:'absolute',
+    bottom:20,
+    alignSelf:'center',
+  }
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
+>>>>>>> ecc8853b142553b8fc055a4d856cfc7e2f867fd9
 });
