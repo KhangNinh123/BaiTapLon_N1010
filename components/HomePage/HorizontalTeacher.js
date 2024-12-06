@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import CardTeacher from '../Course/CardTeacher';
@@ -16,11 +17,21 @@ const HorizontalTeacher = ({ navigation, data }) => {
         }
     };
 
+=======
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import CardTeacher from '../Course/CardTeacher';
+const HorizontalTeacher = ({ navigation, data }) => {
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     return (
         <View style={styles.container}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {data.map((item, index) => (
+<<<<<<< HEAD
                     <TouchableOpacity onPress={() => { handleGetTeacherDetails(item.userId) }} key={index} style={styles.itemContainer}>
+=======
+                    <TouchableOpacity onPress={() => navigation.navigate("TeacherProfile")} key={index} style={styles.itemContainer}>
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
                         <CardTeacher data={item} />
                     </TouchableOpacity>
                 ))}

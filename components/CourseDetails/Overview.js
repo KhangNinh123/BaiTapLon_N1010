@@ -107,11 +107,21 @@ export default function CourseScreen() {
       ))}
 
       <Text style={styles.sectionTitle}>Similar Courses</Text>
+<<<<<<< HEAD
       <ScrollView nestedScrollEnabled>
         {similarCourses.map((course) => (
           <CourseItem key={course.id} course={course} />
         ))}
       </ScrollView>
+=======
+      <FlatList
+        data={similarCourses}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <CourseItem course={item} />}
+        horizontal={false}
+        nestedScrollEnabled
+      />
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
 
       <View style={styles.priceContainer}>
         <View>

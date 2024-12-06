@@ -4,7 +4,11 @@ import Feather from '@expo/vector-icons/Feather';
 const CardTeacher = ({ data }) => {
     return (
         <View style={styles.card}>
+<<<<<<< HEAD
             <Image source={{ uri: data.avartar }} style={styles.image} />
+=======
+            <Image source={{ uri: data.imageUrl }} style={styles.image} />
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
             <View style={styles.content}>
                 <View>
                     <Text style={styles.title}>{data.name}</Text>

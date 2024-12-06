@@ -3,19 +3,31 @@ import { SafeAreaView, View, Text, TextInput, StyleSheet, TouchableOpacity } fro
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function RegisterScreen({ navigation }) {
+<<<<<<< HEAD
+=======
+  const [username, setUsername] = useState('');
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showInputs, setShowInputs] = useState(false); // Trạng thái nút toggle
 
+<<<<<<< HEAD
   const isFormComplete = email && password && confirmPassword;
+=======
+  const isFormComplete = username && email && password && confirmPassword;
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
 
   const handleSignUp = () => {
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
+<<<<<<< HEAD
     alert('Sign Up Successful!');
+=======
+    alert(`Sign Up Successful!\nUsername: ${username}\nEmail: ${email}`);
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     navigation.navigate('Login');
   };
 
@@ -27,6 +39,15 @@ export default function RegisterScreen({ navigation }) {
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>SIGN UP</Text>
         <TextInput
+<<<<<<< HEAD
+=======
+          placeholder="Username"
+          style={styles.input}
+          value={username}
+          onChangeText={setUsername}
+        />
+        <TextInput
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
           placeholder="Email"
           style={styles.input}
           value={email}
@@ -52,6 +73,7 @@ export default function RegisterScreen({ navigation }) {
             style={[styles.checkButton, showInputs && styles.checkButtonActive]}
             onPress={() => setShowInputs(!showInputs)}
           >
+<<<<<<< HEAD
             {showInputs && <Text style={styles.checkMark}>✔</Text>}
           </TouchableOpacity>
           <Text style={styles.textCheck}>Teacher</Text>
@@ -69,6 +91,25 @@ export default function RegisterScreen({ navigation }) {
           </View>
         )}
 
+=======
+          {showInputs && <Text style={styles.checkMark}>✔</Text>}
+          </TouchableOpacity>
+            <Text style={styles.textCheck}>Teacher</Text>
+          </View>
+          {showInputs && (
+            <View style={styles.inputsContainer}>
+              <TextInput
+                style={styles.input}
+                placeholder="Expertise"
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Certificate"
+              />
+            </View>
+          )}
+        
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
         <TouchableOpacity
           style={[styles.btn, isFormComplete ? styles.btnActive : styles.btnInactive]}
           onPress={handleSignUp}
@@ -117,10 +158,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   inputsContainer: {
+<<<<<<< HEAD
     width: '100%',
     marginLeft: 65,
     justifyContent: 'center',
     alignContent: 'center',
+=======
+    width:'100%',
+    marginLeft:65,
+    justifyContent:'center',
+    alignContent:'center',
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
   },
   btn: {
     borderWidth: 1,
@@ -149,7 +197,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     marginTop: 20,
     textAlign: 'center',
+<<<<<<< HEAD
     justifyContent: 'center',
+=======
+    justifyContent:'center',
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     color: 'white',
   },
   footer: {
@@ -160,15 +212,25 @@ const styles = StyleSheet.create({
     bottom: 15,
     alignSelf: 'center',
   },
+<<<<<<< HEAD
   checkContainer: {
     flexDirection: 'row',
+=======
+  checkContainer:{
+    flexDirection:'row',
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     alignSelf: 'flex-end',
     marginRight: 35,
   },
   checkButton: {
     borderWidth: 1,
+<<<<<<< HEAD
     height: 15,
     width: 15,
+=======
+    height:15,
+    width:15,
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     borderColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -181,8 +243,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+<<<<<<< HEAD
   textCheck: {
     marginLeft: 10,
+=======
+  textCheck:{
+    marginLeft:10,
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     fontFamily: 'Roboto',
     textAlign: 'center',
     color: 'white',

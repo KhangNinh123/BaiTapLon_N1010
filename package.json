@@ -15,8 +15,11 @@
     "@react-navigation/material-top-tabs": "^6.6.14",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
+<<<<<<< HEAD
     "@reduxjs/toolkit": "^2.3.0",
     "@rneui/themed": "^4.0.0-rc.8",
+=======
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "expo": "~52.0.11",

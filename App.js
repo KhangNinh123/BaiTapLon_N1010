@@ -8,6 +8,7 @@ import CourseDetailPage from './components/CourseDetailPage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LearningPage from './components/LearningPage'
 import TeacherProfile from './components/TeacherProfile';
+<<<<<<< HEAD
 import CartPage from './components/CartPage'
 import LoginScreen from './components/Login/LoginPage';
 import RegisterScreen from './components/Login/SignupPage'
@@ -29,6 +30,19 @@ export default function App({ navigation }) {
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
+=======
+const Stack = createNativeStackNavigator();
+export default function App({ navigation }) {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="BottomTab" component={TabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="CourseDetail" component={CourseDetailPage} options={{ headerShown: false }} />
+        <Stack.Screen name="LearningPage" component={LearningPage} options={{ headerShown: false }} />
+        <Stack.Screen name="TeacherProfile" component={TeacherProfile} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+>>>>>>> e4b4ccc6effd90b572f6128ca3eae48b84280466
   );
 }
 
